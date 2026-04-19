@@ -1,31 +1,101 @@
 <!doctype html>
 <html>
   <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
+    <title>Anime Catalog | Home</title>
+    <meta name="description" content="A searchable and filterable anime catalog with sorting controls" />
     <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
+    <script type="module" src="scripts.js"></script>
   </head>
 
   <body>
     <header class="main-header">
-      <h1 class="title">LA TV Shows</h1>
+      <h1 class="title">Top 200 Anime of All Time</h1>
     </header>
-    <div id="card-container"></div>
+
+    <main class="page-layout">
+      <aside class="filter-panel">
+        <h2 id="filter-number">Filters</h2>
+
+        <label for="filter-type">Type</label>
+        <select id="filter-type" onchange="filterAndSort()">
+          <option value="all">All</option>
+          <option value="TV">TV</option>
+          <option value="Movie">Movie</option>
+          <option value="OVA">OVA</option>
+          <option value="ONA">ONA</option>
+          <option value="Special">Special</option>
+        </select>
+
+        <label for="filter-episodes">Episodes</label>
+        <select id="filter-episodes" onchange="filterAndSort()">
+          <option value="all">Any</option>
+          <option value="5">up to 5 episodes</option>
+          <option value="12">Up to 12 episodes</option>
+          <option value="24">Up to 24 episodes</option>
+          <option value="25plus">more than 25 episodes</option>
+        </select>
+
+        <label for="filter-members">Members</label>
+        <select id="filter-members" onchange="filterAndSort()">
+          <option value="all">Any</option>
+          <option value="100000">100,000+</option>
+          <option value="500000">500,000+</option>
+          <option value="1000000">1,000,000+</option>
+          <option value="2000000">2,000,000+</option>
+        </select>
+
+        <button class="secondary-btn" onclick="clearFilters()">
+          Clear Filters
+        </button>
+        <button class="tertiary-btn" onclick="quoteAlert()">
+          Quote of the Day
+        </button>
+      </aside>
+
+      <section class="content-panel">
+        <div class="toolbar">
+          <div class="toolbar-control">
+            <label for="search-input">Search</label>
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Search by anime title"
+              oninput="filterAndSort()"
+            />
+          </div>
+
+          <div class="toolbar-control sort-control">
+            <label for="sort-select">Sort By</label>
+            <select id="sort-select" onchange="filterAndSort()">
+              <option value="popularity">Popularity / Members</option>
+              <option value="rank">Rank / Score</option>
+              <option value="episodes"> Highest Episodes</option>
+              <option value="Title">Title</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="card-container" class="anime-grid"></div>
+      </section>
+    </main>
+
     <div class="card" style="display: none">
       <div class="card-content">
-        <h2>TV Show Title</h2>
+        <h2>Anime Title</h2>
         <img src="" alt="TV Show Poster" />
-        <ul>
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
+        <p class="synopsis">
+          Synopsis: Centuries ago, mankind was slaughtered to near extinction by
+          monstrous humanoid creatures called Titans...
+        </p>
+        <ul class="meta-list">
+          <li><strong>Score:</strong> 8.57</li>
+          <li><strong>Rank:</strong> 115</li>
+          <li><strong>Popularity:</strong> 1</li>
+          <li><strong>Members:</strong> 4,262,220</li>
+          <li><strong>Type:</strong> TV</li>
+          <li><strong>Episodes:</strong> 25</li>
         </ul>
       </div>
-    </div>
-    <div class="footer">
-      <button onclick="quoteAlert()">Get A Quote!</button>
-      <button onclick="removeLastCard()">Remove A Card!</button>
     </div>
   </body>
 </html>

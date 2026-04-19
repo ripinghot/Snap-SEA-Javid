@@ -1,70 +1,222 @@
+:root {
+  --bg-dark: #0b1220;
+  --bg-mid: #17283c;
+  --panel: #ffffff;
+  --ink: #122033;
+  --ink-soft: #4b5f78;
+  --accent: #ff7b2f;
+  --accent-dark: #e76114;
+  --border: #d7deea;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% -10%, #2f4562 0%, transparent 35%),
+    radial-gradient(circle at 100% 0%, #243f63 0%, transparent 30%),
+    linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-mid) 100%);
 }
 
 .main-header {
-  background-color: rgba(0, 0, 0, 0.3);
-  padding-bottom: 10px;
+  padding: 28px 24px 18px;
+  text-align: center;
 }
 
 .title {
-  text-align: center;
   margin: 0;
-  font-size: 8em;
-  font-family: "Helvetica";
-  font-weight: normal;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-family: "Impact", "Arial Black", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: white;
 }
 
-#card-container {
+.page-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  padding: 16px 20px 24px;
+  align-items: start;
+}
+
+.filter-panel {
+  background: var(--panel);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.filter-panel h2 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.filter-panel label,
+.toolbar-control label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.filter-panel select,
+.toolbar-control input,
+.toolbar-control select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 9px 10px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: #f9fbff;
+}
+
+.content-panel {
+  min-width: 0;
+}
+
+.toolbar {
   display: flex;
-  justify-content: center;
-  margin: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+  background: var(--panel);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 12px;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.toolbar-control {
+  display: grid;
+  gap: 6px;
+  flex: 1 1 280px;
+}
+
+.sort-control {
+  flex: 0 1 220px;
+}
+
+#card-container {
+  margin: 0;
+}
+
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
 }
 
 .card {
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 5px;
+  width: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(3, 20, 38, 0.12);
+  margin: 0;
+  background: var(--panel);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px rgba(3, 20, 38, 0.2);
 }
 
 .card-content {
-  padding: 20px;
-  font-family: "Verdana";
-  color: #777;
+  padding: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--ink-soft);
 }
 
 .card-content h2 {
-  margin-top: 0;
-  font-size: 20px;
+  margin: 8px 0 10px;
+  font-size: 1.15rem;
+  color: var(--ink);
 }
 
 .card img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 10px;
+.synopsis {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.meta-list li {
+  font-size: 0.88rem;
+  padding: 6px 8px;
+  background: #f4f8ff;
+  border-radius: 8px;
+}
+
+.meta-list strong {
+  color: var(--ink);
 }
 
 button {
   text-align: center;
-  background-color: #666;
+  background-color: var(--accent);
   border: none;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 40px;
-  border-radius: 10px;
+  padding: 0 14px;
+  height: 38px;
+  border-radius: 9px;
   color: white;
-  font-size: 22px;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  margin: 5px;
+  margin: 0;
+}
+
+button:hover {
+  background-color: var(--accent-dark);
+}
+
+.secondary-btn {
+  background: #24456a;
+}
+
+.secondary-btn:hover {
+  background: #1c3552;
+}
+
+@media (max-width: 900px) {
+  .page-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-panel {
+    order: 2;
+  }
+
+  .content-panel {
+    order: 1;
+  }
 }
