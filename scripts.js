@@ -73,16 +73,6 @@ function filterAndSort() {
   if (typeValue !== "all") {
     filter_list = filter_list.filter((anime) => anime.type === typeValue);
   }
-
-  if (sortValue === "popularity") {
-    filter_list.sort((a, b) => a.popularity - b.popularity);
-  } else if (sortValue === "episodes") {
-    filter_list.sort((a, b) => b.episodes - a.episodes);
-  } else if (sortValue === "Title") {
-    filter_list.sort((a, b) => a.title.localeCompare(b.title));
-  } else if (sortValue === "rank") {
-    filter_list.sort((a, b) => a.rank - b.rank);
-  }
   
   if (searchValue !== "") {
     filter_list = filter_list.filter((anime) =>
@@ -107,6 +97,17 @@ function filterAndSort() {
       if (membersValue === "2000000") return anime.members >= 2000000;
       return true;
     });}
+
+  if (sortValue === "popularity") {
+    filter_list.sort((a, b) => a.popularity - b.popularity);
+  } else if (sortValue === "episodes") {
+    filter_list.sort((a, b) => b.episodes - a.episodes);
+  } else if (sortValue === "Title") {
+    filter_list.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortValue === "rank") {
+    filter_list.sort((a, b) => a.rank - b.rank);
+  }
+  
   showCards(filter_list);
 }
 
